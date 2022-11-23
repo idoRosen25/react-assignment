@@ -1,16 +1,12 @@
 import './show.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { products } from '../products';
 
 const ShowProduct = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  console.log('pathname in show: ', pathname.split('/').at(-1));
 
-  const productById = products.find(
-    (product) => product.id === parseInt(pathname.split('/').at(-1)),
-  );
-  console.log('productById: ', productById);
+  const productById = products.find((product) => product.id === Number(id));
 
   return (
     <div style={{ paddingTop: '3%' }}>
